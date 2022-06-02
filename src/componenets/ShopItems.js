@@ -1,4 +1,3 @@
-
 import { firestore } from "../firebase-config";
 function ShopItems(props) {
 	const { shops } = props;
@@ -15,6 +14,8 @@ function ShopItems(props) {
 			.catch((error) => {
 				console.error(error);
 			});
+
+		alert("delete shop successfully");
 	};
 	return (
 		<>
