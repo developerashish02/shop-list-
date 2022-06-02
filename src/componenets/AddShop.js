@@ -29,17 +29,18 @@ function AddShop() {
 
 					{/* input Aeras Avaliables */}
 					<div className="input-group mb-3">
-						<label className="input-group-text" htmlFor="shopaera">
+						<label className="input-group-text" htmlFor="shopArea">
 							Area
 						</label>
 						<select
 							className="form-select"
-							id="shopaera"
+							id="shopArea"
 							name="shopArea"
 							value={shop.shopArea}
 							onChange={onChange}
+							required
 						>
-							<option defaultValue="Solapur">Solapur</option>
+							<option defaultValue="">Select Aera...</option>
 							<option value="Ahmednagar">Ahmednagar</option>
 							<option value="Nagpur">Nagpur</option>
 							<option value="Nashik">Nashik</option>
@@ -62,7 +63,7 @@ function AddShop() {
 							onChange={onChange}
 							required
 						>
-							<option defaultValue="1">Stationery shop</option>
+							<option defaultValue="Stationery shop">Stationery shop</option>
 							<option value="Chemist">Chemist</option>
 							<option value="Baker">Baker</option>
 							<option value="Butcher">Butcher</option>

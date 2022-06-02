@@ -8,28 +8,26 @@ function Shop() {
 	const { shop, onChange, handleSubmit } = useContext(shopContaxt);
 	const [shopData, setShopData] = useState([]);
 
-	// get data from firestore 
+	// get data from firestore
 	useEffect(() => {
-		firestore
-			.collection("shops")
-			.onSnapshot((snapshot) => {
-				const shopData = snapshot.docs.map((doc) => {
-					const data = doc.data();
-					data["id"] = doc.id;
-					return data;
-				});
-				setShopData(shopData);
-			})
+		firestore.collection("shops").onSnapshot((snapshot) => {
+			const shopData = snapshot.docs.map((doc) => {
+				const data = doc.data();
+				data["id"] = doc.id;
+				return data;
+			});
+			setShopData(shopData);
+		});
 	}, []);
 
-	// handle delete 
-	const handleDelete = () => {
-		const ref = firestore.collection('shops').doc()
-	}
+
 	return (
 		<>
 			<div className="container align-items-center justify-content-center d-flex my-4">
-				<form className="border rounded-3 border-dark px-5 py-3 " onSubmit={handleSubmit}>
+				<form
+					className="border rounded-3 border-dark px-5 py-3 "
+					onSubmit={handleSubmit}
+				>
 					<h2 className="text-center  fw-light">Add Shop </h2>
 					{/* taking input shop name */}
 					<div className="mb-3">
@@ -57,7 +55,6 @@ function Shop() {
 							name="shopArea"
 							value={shop.shopArea}
 							onChange={onChange}
-
 						>
 							<option defaultValue="Solapur">Solapur</option>
 							<option value="Ahmednagar">Ahmednagar</option>
@@ -130,10 +127,10 @@ function Shop() {
 
 			<div className="container">
 				<div className="row">
-					<h2 className="text-center fw-bold">Your I-Notes</h2>
+					<h2 className="text-center fw-bold">All Shopes</h2>
 					{/* when notes array is empty  */}
 					<div className="container mx-2">
-						{shopData.length === 0 && "No Notes to display"}
+						{shopData.length === 0 && "No Shopes to display"}
 					</div>
 					{shopData.map((shops) => {
 						return <ShopItems shops={shops} key={shops.id} />;
