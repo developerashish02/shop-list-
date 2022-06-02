@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import shopContaxt from "./shopContaxt";
 import { firestore } from "../firebase-config";
 
@@ -17,7 +17,28 @@ function ShopState(props) {
 	// handle submit form
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(shop);
+		if (!shop.shopName) {
+			alert("shop name is required");
+			return;
+		}
+		if (!shop.shopArea) {
+			alert("Shop Aera is required");
+			return;
+		}
+		if (!shop.shopCategory) {
+			alert("Shop category is required");
+			return;
+		}
+
+		if (!shop.openDate) {
+			alert("shop open date is required");
+			return;
+		}
+		if (!shop.openDate && !shop.closeDate) {
+			alert("please provide open and close dates");
+			return;
+		}
+
 		firestore.collection("shops").add({
 			shopName: shop.shopName,
 			shopArea: shop.shopArea,
@@ -25,14 +46,13 @@ function ShopState(props) {
 			openDate: shop.openDate,
 			closeDate: shop.closeDate,
 		});
-		console.log(shop);
+
+		setshop(initialState);
 	};
 	// get the form values
 	const onChange = (e) => {
 		setshop({ ...shop, [e.target.name]: e.target.value });
 	};
-
-
 
 	return (
 		<shopContaxt.Provider value={{ shop, onChange, handleSubmit }}>
